@@ -15,6 +15,7 @@ CREATE TABLE users
     prenom VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL,
     tele VARCHAR(50) NOT NULL,
+    pass varchar(50) NOT NULL,
     roleid int NOT NULL,
     FOREIGN KEY(roleid) REFERENCES dbo.roles(role_id)
 );
