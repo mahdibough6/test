@@ -18,10 +18,10 @@ $pageTitle = "index";
 
     </div>
 </section>
-<section>
+<section id="accueilSec">
 <div class="container">
-<?php if (true) { ?>
-    <h1 class="mt-5 mb-5">Espace Staff</h1>
+<?php if ($_SESSION["user"]["nom_role"] == 'staff') { ?>
+    <h1 id="accueilSecHeader" class="mt-5 mb-5">Espace Staff <hr> </h1>
     <div class="row">
     <div class="col d-flex flex-column justify-content-center">
     <img class="mx-auto" src="./img/doc-v1.png" alt="" srcset="">
@@ -31,7 +31,7 @@ $pageTitle = "index";
     </div>
     <div class="col d-flex flex-column justify-content-center">
     <img class="mx-auto" src="./img/notification-v1.png" alt="" srcset="">
-    <a class="text-center">les demande d'inscription</a>
+    <a href="notifications.php" class="text-center">cree une notification</a>
     <p class="text-center">this is an image of a document that represents the demands of inscription</p>
 
     </div><div class="col d-flex flex-column justify-content-center">
@@ -41,27 +41,27 @@ $pageTitle = "index";
 
     </div>
 </div>
-    <?php } elseif(true) { ?>
+    <?php } elseif($_SESSION["user"]["nom_role"] == 'doctorant') { ?>
         <h1>doctorant</h1>
         <div class="row">
     <div class="col d-flex flex-column justify-content-center">
     <figure>
-    <img class="mx-auto" src="../img/doc-v1.png" alt="" srcset="">
-    <figcaption class="text-center">boite des desmandes</figcaption>
+    <img class="mx-auto" src="./img/doc-v1.png" alt="" srcset="">
+    <a href="./info.php" class="text-center">deposer votre demande</a>
     <div class="text-center">this is an image of a document that represents the demands of inscription</div>
 </figure>
 
     </div>
     <div class="col d-flex flex-column justify-content-center">
     <figure>
-    <img class="mx-auto" src="../img/notification-v1.png" alt="" srcset="">
+    <img class="mx-auto" src="./img/notification-v1.png" alt="" srcset="">
     <figcaption class="text-center">les demande d'inscription</figcaption>
     <div class="text-center">this is an image of a document that represents the demands of inscription</div>
 </figure>
 
     </div><div class="col d-flex flex-column justify-content-center">
     <figure>
-    <img class="mx-auto" src="../img/convo-v1.png" alt="" srcset="">
+    <img class="mx-auto" src="./img/convo-v1.png" alt="" srcset="">
     <figcaption class="text-center">les demande d'inscription</figcaption>
     <div class="text-center">this is an image of a document that represents the demands of inscription</div>
 </figure>
@@ -70,25 +70,27 @@ $pageTitle = "index";
 </div>
 
     <?php } else { ?>
-
-        <h1>condidat</h1>
+ <h1 id="accueilSecHeader" class="mt-5 mb-5">Espace condidat <hr> </h1>
     <div class="row">
-        <div class="col">
-            <img src="../img/doc-v1.png" alt="" srcset="">
-            <legend>les demande d'inscription</legend>
-        </div>
-        <div class="col"> 
-            <img src="../img/notification-v1.png" alt="" srcset="">
-            <legend>notifications</legend>
-        </div>
-        <div class="col">
-            <img src="../img/notification-v1.png" alt="">
-            <legend>convocations</legend>
-        </div>
-    </div>
-        <?php } ?>
-</div>
-</section>
+    <div class="col d-flex flex-column justify-content-center">
+    <img class="mx-auto" src="./img/doc-v1.png" alt="" srcset="">
+    <a href="./info.php" class="text-center">deposer votre demande</a>
+    <p class="text-center">this is an image of a document that represents the demands of inscription</p>
 
+    </div>
+    <div class="col d-flex flex-column justify-content-center">
+    <img class="mx-auto" src="./img/notification-v1.png" alt="" srcset="">
+    <a href="notifications.php" class="text-center">cree une notification</a>
+    <p class="text-center">this is an image of a document that represents the demands of inscription</p>
+
+    </div><div class="col d-flex flex-column justify-content-center">
+    <img class="mx-auto" src="./img/convo-v1.png" alt="" srcset="">
+    <a class="text-center">les demande d'inscription</a>
+    <p class="text-center">this is an image of a document that represents the demands of inscription</p>
+
+    </div>
+</div>
+<?php } ?>
+</section>
 <?php include_once './includes/footer.php';
 ?>

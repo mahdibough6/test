@@ -1,5 +1,6 @@
 <?php
-require("commande/commande.php");
+//require("commande/commande.php");
+include_once './includes/func.inc.php';
 ?>
 <!DOCTYPE html>
 <html>

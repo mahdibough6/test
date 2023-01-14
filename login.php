@@ -1,7 +1,7 @@
 <?php
 //le ficher commande contien toute les fonctions
-
-include "commande/commande.php";
+include_once './includes/func.inc.php';
+//include "commande/commande.php";
 
 ?>
 <!DOCTYPE html>
@@ -55,12 +55,13 @@ if(isset($_POST['ok'])){
        
        $email=htmlspecialchars(strip_tags($_POST['email']));
        $mot=htmlspecialchars(strip_tags($_POST['password']));
-         
-       $admin=getadmin($email,$mot);
+        include_once './db/db.php' ;
+       $admin=getadmin($conn, $email,$mot);
 if($admin){
-    //cette  $_SESSION pour le users 
-  $_SESSION['users']=$admin;
-
+    //cette  $_SESSION pour le user 
+    session_start();
+  $_SESSION['user']=$admin;
+  header("Location: ./accueil.php");
 }
     }
     }

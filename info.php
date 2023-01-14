@@ -1,6 +1,6 @@
 <?php
 
-include "commande/commande.php";
+include "./includes/func.inc.php";
 
 ?>
 <!DOCTYPE html>
@@ -47,6 +47,7 @@ include "commande/commande.php";
 </body>
 </html>
 <?php
+session_start();
 if(isset($_POST['ok'])){
   
    if(  isset($_POST['spécialité'])){
@@ -63,16 +64,17 @@ if(isset($_POST['ok'])){
                if(!in_array($extension_upload,$tab)){
                 header("Location:info.php?errordetype ");
                exit(" ");}
-               $documen=$_SESSION['users']['users_id'].$_SESSION['users']['nom'].".".$extension_upload;
+               $documen=$_SESSION['user']['user_id'].$_SESSION['user']['nom'].".".$extension_upload;
                if(isset($_FILES['fich'])){
-                  $dossier = 'C:\xamppnew\htdocs\TST\mhdi/';
+                  $dossier = './assets/';
 
                  $fichier = basename($_FILES['fich']['name']);
                  if(move_uploaded_file($_FILES['fich']['tmp_name'],$dossier.$documen))
-                 {$documen='mhdi/'.$documen;
+                 {
                  $ajout=ajoutedocumen($documen,$spc);
                  if($ajout==1)
-                 header("Location:info.php?validedocument");
+                 header("Location: accueil.php");
+                // header("Location:info.php?validedocument");
                 }
                  else{
                       exit("Echec de l'upload !"); 
