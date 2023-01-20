@@ -59,13 +59,12 @@ exit();
 
 function ajoute($nom,$prenom,$tel,$email,$mot){
 if(require("./db/db.php")){
-    $ch="select count(*) from dbo.user where email='$email'";
+    $ch="exec getNbEmail @email='$email'";
     $st=sqlsrv_query($conn, $ch);
     $data=sqlsrv_fetch_array($st);
     //pour teste est ce que  l'email exists deja dans labase de donnees
 if($data[0]==0){
-    $sql="insert into dbo.user(nom,prenom,tele,email,pass,nom_role)
-     values('$nom','$prenom','$tel','$email','$mot','candidat');";
+    $sql="exec setNewUsres @nom='$nom',@prenom='$prenom',@tel='$tel',@email='$email',@mot='$mot'";
      $stmt=sqlsrv_query($conn, $sql);
     if(!$stmt){exit("error de l'insertion " );}
     else {return (1);}
@@ -112,12 +111,12 @@ function testpass($mot){
 //fonction bax red SESSION
 
 function getadmin($conn, $email,$mot){
-        $ch="select count(*) from dbo.users where email='$email' and pass='$mot'";
+        $ch="exec dbo.nbrusers @email='$email' ,@mot='$mot'";
         $st=sqlsrv_query($conn, $ch);
         $data=sqlsrv_fetch_array($st);
         //pour teste est ce que  ce compte exists
     if($data[0]!=0){
-        $sql="select * from dbo.users where email='$email' and pass='$mot'";
+        $sql="exec dbo.selectUsers @email='$email' ,@mot='$mot'";
          $stmt =sqlsrv_query($conn, $sql);
         if($stmt){
             $data=sqlsrv_fetch_array($stmt);
@@ -137,28 +136,14 @@ function getadmin($conn, $email,$mot){
 
 // fonction pour l'inscription et l'ajoute des documens
  function ajoutedocumen($documen,$spc){
-    
     if(require("./db/db.php")){
         // la requite pour  trouver id de  l'admin qui possede le mois des candidats
-$chec="exec dbo.getStaffHasLessCondidats";
+$chec="exec dbo.getIdAdmin";
 // la requête pour trouver n'importe  id admin
-$chec2="select top 1 AA.user_id  from dbo.users as AA where nom_role='staff'";
-$ATX2=sqlsrv_query($conn, $chec2);
-        $DTR2=sqlsrv_fetch_array($ATX2);
-        $idadmin2=$DTR2[0];
 $ATX=sqlsrv_query($conn, $chec);
         $DTR=sqlsrv_fetch_array($ATX);
-        
-
-
-        if(!$DTR){
-            $idadmin=$idadmin2;
-        }
-        else{
-
-        $idadmin=$DTR2[0];
-        }
-        $ch="select count(*) from dbo.inscriptions where nom_doc='$documen' ";
+        $idadmin=$DTR[0];
+        $ch="exec  dbo.setDocument @Doc='$documen'";
         $st=sqlsrv_query($conn, $ch);
         $data=sqlsrv_fetch_array($st);
         //teste est ce que le documen deja ete charge*/
@@ -166,8 +151,7 @@ $ATX=sqlsrv_query($conn, $chec);
 
         $id=$_SESSION['user']['user_id'];
         $dat=date("Y-m-d");
-        $sql="insert into dbo.inscriptions(date_inscription,nom_doc,spec,status,staff_id,condidat_id)
-     values('$dat','$documen','$spc','encours','$idadmin','$id');";
+        $sql="exec insertDocument @dat='$dat',@documen='$documen',@spc='$spc',@idadmin='$idadmin',@id='$id'";
      $stmt=sqlsrv_query($conn, $sql);
      if( $stmt === false ) {
         if( ($errors = sqlsrv_errors() ) != null) {
@@ -207,4 +191,6 @@ if( $stmt === false ) {
             }
         }
     }
+    header("Location: ../accueil.php");
+    exit();
 }

@@ -1,34 +1,10 @@
 
 
-IF NOT EXISTS (SELECT 1 FROM sys.databases WHERE name = 'gestion_inscription')
-BEGIN
     CREATE DATABASE gestion_inscription;
+    go
     USE gestion_inscription;
-END
 
-   
 go
-create proc dbo.deleteAllTables 
-AS
-
-IF OBJECT_ID('dbo.notfication', 'U') IS NOT NULL
-BEGIN
-    DROP TABLE dbo.notifications;
-END
-IF OBJECT_ID('dbo.inscriptions', 'U') IS NOT NULL
-BEGIN
-    DROP TABLE dbo.inscriptions;
-END
-BEGIN
-    IF OBJECT_ID('dbo.users', 'U') IS NOT NULL
-BEGIN
-    DROP TABLE dbo.users;
-END
-
-
-end
- exec dbo.deleteAllTables;
- go
 CREATE TABLE dbo.users
 (
     user_id INT IDENTITY(1,1) PRIMARY KEY,
@@ -67,13 +43,10 @@ CREATE TABLE dbo.notifications
 go
 
 insert into dbo.users(nom, prenom, email, tele, pass, nom_role) values
- ('mahdi', 'boughrous', 'mahdibough@gmail.com', '0628183887', '.', 'staff'),
- ('chadia', 'kharmoudi', 'mahdibough@gmail.com', '0628183887', '.', 'staff'),
- ('ahmed', 'aboutaib', 'mahdibough@gmail.com', '0628183887', '.', 'staff'),
- ('omar', 'foo', 'omar@gmail.com', '0628183887', '.', 'condidat'),
- ('mouhssine', 'bar', 'mouhssine@gmail.com', '0628183887', '.', 'condidat'),
- ('amal', 'foobar', 'amal@gmail.com', '0628183887', '.', 'condidat'),
- ('reda', 'asap', 'reda@gmail.com', '0628183887', '.', 'condidat');
+ ('admin', 'admin', 'admin@gmail.com', '066666666', 'ffffff', 'staff'),
+ ('omar', 'aatik', 'omar@gmail.com', '066666666', 'aaaaaa', 'condidat'),
+ ('hmed', 'bouga', 'hmed@gmail.com', '0628183887', 'bbbbbb', 'condidat'),
+ ('moha', 'agoub', 'moha@gmail.com', '0628183887', 'cccccc', 'condidat');
  go
 
 -- pour modifier le status d'inscription par example encours -> phase1
@@ -95,21 +68,11 @@ insert into dbo.users(nom, prenom, email, tele, pass, nom_role) values
     end
  end
  go
+ /*
 
---retourner le staff qui a le plus petits condidats
 
-create function dbo.getStaffHasLessCondidats()
-returns int
-begin 
-return(
-    select f.user_id from (
-select top 1 AA.user_id,count(condidat_id) as cn 
-from dbo.users as AA,dbo.inscriptions as AD 
-where AD.staff_id = AA.user_id and nom_role='staff' 
-group by AA.user_id
-order by cn asc)as f);
-end
-go
+ */
+
 -- retourner tout inscription encours
 
 create function dbo.getAllInscriptions(
@@ -146,3 +109,85 @@ begin
 
 end
 go
+--retourner le staff qui a le plus petits condidats
+create proc dbo.getIdAdmin
+as
+begin 
+if exists(select f.user_id from (
+select top 1 AA.user_id,count(condidat_id) as cn 
+from dbo.users as AA,dbo.inscriptions as AD 
+where AD.staff_id = AA.user_id and nom_role='staff' 
+group by AA.user_id
+order by cn asc)as f)
+begin
+select f.user_id from (
+select top 1 AA.user_id,count(condidat_id) as cn 
+from dbo.users as AA,dbo.inscriptions as AD 
+where AD.staff_id = AA.user_id and nom_role='staff' 
+group by AA.user_id
+order by cn asc)as f
+end
+else 
+select top 1 AA.user_id  from dbo.users as AA where nom_role='staff'
+end
+go
+---precuder qui return le nombre de document exist 
+create proc dbo.setDocument(@Doc varchar(50))
+as
+begin
+select count(*) from dbo.inscriptions where nom_doc=@Doc 
+end
+go
+--- insertion du document
+create proc insertDocument(@dat varchar(20),@documen varchar(20),@spc varchar(20),@idadmin int ,@id int)
+as
+insert into dbo.inscriptions(date_inscription,nom_doc,spec,status,staff_id,condidat_id)
+     values(@dat,@documen,@spc,'encours',@idadmin,@id)
+go
+--retun numbre users
+create proc dbo.nbrusers(@email varchar(20),@mot varchar(20))
+as
+select count(*) from dbo.users where email=@email and pass=@mot
+go
+---return users 
+CREATE PROC dbo.selectUsers(
+    @email varchar(20),
+    @mot varchar(20)
+)
+AS
+    SELECT * FROM dbo.users WHERE email=@email AND pass=@mot
+GO
+--return nombre d'email exist
+CREATE PROC getNbEmail(
+    @email varchar(20)
+)
+AS
+BEGIN
+    SELECT count(*) FROM dbo.users WHERE email=@email
+END
+GO
+/*
+
+pour verifier le nomvre dun email exist dans la base de donnees , cette procedure est utiliser pour inderdire l'utilisateur de s'incrire avec un email deja utiliser
+
+*/
+--insert  users
+create proc setNewUsres(
+    @nom varchar(20),
+    @prenom varchar(20),
+    @tel varchar(20),
+    @email varchar(20),
+    @mot varchar(20)
+)
+as
+insert into dbo.users(nom,prenom,tele,email,pass,nom_role)
+     values(@nom,@prenom,@tel,@email,@mot,'candidat');
+go
+/*
+num:1
+
+cette procedure permet de creer un utilisateur de type candidat par defaut
+
+
+*/
+

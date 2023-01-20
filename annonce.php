@@ -10,15 +10,26 @@
         $title = $row['titre_notification'];
         $date = $row['date_notification']->format('Y-m-d');
         $text = $row['text_notification'];
+        $file = $row['nom_doc_not'];
     ?>
+
+
+
+
+
+
+
+
     <div class="card w-50 m-5">
         <div class="card-header"><span class=" fa fa-info-circle fa-2x p-1 bg-bleu"></span><?= $title;?></div>
         <div class="card-body">
-            <blockquote class="blockquote mb-0">
                 <p><?= $text; ?></p>
-                <footer class="blockquote-footer"><?= $date; ?></footer>
+                <form action="./includes/file_download.php" method="post">
+                    <input type="hidden" name="fileName" value="<?php echo $file?>">
+                <p class=""><?= $date; ?></p>
                 <br>
-            </blockquote>
+                <button type="submit"  class="btn btn-primary " name="submit">download file</button>
+</form>
   </div>
 </div>
 <?php  include_once("./includes/footer.php");      ?>

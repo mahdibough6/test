@@ -1,16 +1,15 @@
 <footer class="bg-dark">
   <div class="container">
   <div class="row justify-content-center align-items-center g-2">
-    <div class="col">
+    <div class="col pt-5">
       <h5>contactez-nous</h5>
-      <ul>
+      <ul style="list-style-type:none;">
         <li>mahdi.boughrous@usms.ac.ma</li>
-        <li></li>
-        <li></li>
+        <li>ahmad.aboutaib@usms.ac.ma</li>
+        <li>chadia.elkharmoudi@usms.ac.ma</li>
       </ul>
     </div>
-    <div class="col">Column</div>
-    <div class="col">Column</div>
+    
   </div></div>
 </footer>
 

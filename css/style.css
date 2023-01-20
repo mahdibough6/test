@@ -1,97 +1,14 @@
-/*******/
-.header{
-	        background-image: url(../img/doctorants.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-            color: white;
-            height: 500px;
-        }
-        .titre{
-            color: white;
-            font-size: 7rem;
-            font-weight: bold;
-            background-color: rgb(255, 157, 0,0.5);
-        }
-        .act{
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-       
-        
-        .login-box {
-          width: 280px;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          color: #FF9C00;
-        }
-        
-        h1 {
-          margin-bottom: 10px;
-          padding: 13px;
-          color: black;
-          font-family: sans-serif;
-        }
-        
-        
-        .textbox {
-          width: 100%;
-          overflow: hidden;
-          font-size: 20px;
-          padding: 8px 0;
-          margin: 8px 0;
-          border-bottom: 1px solid #FF9C00;
-        }
-        
-        .fa {
-          float: left;
-          text-align: center;
-            color: #FF9C00;
-        }
-        
-        .textbox input {
-          border: none;
-          outline: none;
-          background: none;
-          font-size: 18px;
-          float: left;
-          margin: 0 10px;
-        }
-        a{
-          text-decoration: none;
-        }
-        
-        .button {
-          width: 100%;
-          padding: 10px;
-          color: #ffffff;
-          background:#FF9C00;
-          border: none;
-          border-radius: 6px;
-          font-size: 18px;
-          cursor: pointer;
-          margin:  5px;
-        }
-        .button2{
-          width: 100%;
-          padding: 10px;
-          color: #FF9C00;
-          background:#ffffff;
-          border-color: #FF9C00;
-          border-radius: 6px;
-          font-size: 18px;
-          cursor: pointer;
-          margin: 12px 0;
-        }
-        img{
-            margin-left: 35px;
-            width:190px;
-           
-        }
-        /*****/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #105469;
+  font-family: 'Open Sans', sans-serif;
+}
+
 #boiteDemandesSection{
     color: rgb(255, 190, 10);
    background: url(../img/background-v2.jpg) no-repeat center center fixed; 
@@ -116,18 +33,9 @@
 footer{
     color:white;
 }
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
 
-*, *:before, *:after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
-body {
-  background: #105469;
-  font-family: 'Open Sans', sans-serif;
-}
+
 table {
   background: #012B39;
   border-radius: 0.25em;
@@ -168,5 +76,69 @@ section hr{
 }
 #notificationSec{
 
-    height: 500px;
+    height: 100vh;
+}
+/*** page d'index (la premiere page du notre site web) ***/
+#welcomeSec {
+  color: rgb(255, 190, 10);
+   background: linear-gradient(to top, transparent 0%, black 100%), url(../img/campus-entry-v1.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;height:400px;
+}
+#nav a{
+  color:white;
+  text-decoration: none;
+}
+#nav{
+  display: flex;
+  height: 60px;
+  background-color: #141414;
+  justify-content: space-between;
+  color: white;
+}
+#listBtns {
+  display: flex;
+  height: 100%;
+align-items: center;
+}
+#listBtns ul{
+  display: flex;
+  gap: 10px;
+  list-style-type: none;
+  cursor: pointer;
+  margin: 0;
+}
+#listBtns li:hover{
+color: #5b5c5c;
+}
+#authBtns{
+  display: flex;
+  gap: 10px;
+  padding: 0px 10px 0px 10px;
+text-decoration: none;
+align-items: center;
+
+height: 100%;
+}
+#authBtns a{
+  height: 40px;
+}
+
+#nav #listBtns ul{
+  text-decoration: none;
+}
+#notificationSec form{
+  border: 1px solid #012B39;
+  margin-top: 20px;
+  padding: 30px;
+  border-radius: 20px;
+  width: 100%;
+}
+#notificationSec h1{
+  margin-top: 20px;
+  margin-left: 20px;
+  display:inline-block;
+border-bottom: 9px solid #FAA61F; 
 }

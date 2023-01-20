@@ -29,7 +29,7 @@ include_once './includes/header.php';
         <th>phase 2</th>
     </tr>
     
-    <?php echo var_dump($data); for ($i = 0; $i < count($data); $i++) { ?>
+    <?php  for ($i = 0; $i < count($data); $i++) { ?>
 
         <tr>
             <td><?php echo $data[$i]['condidat_id']; ?></td>

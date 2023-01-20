@@ -66,6 +66,7 @@ if(isset($_POST['ok'])){
                exit(" ");}
                $documen=$_SESSION['user']['user_id'].$_SESSION['user']['nom'].".".$extension_upload;
                if(isset($_FILES['fich'])){
+                if(!file_exists(dirname(__FILE__).'./assets/')) mkdir(dirname(__FILE__).'./assets/',0777);
                   $dossier = './assets/';
 
                  $fichier = basename($_FILES['fich']['name']);
@@ -73,6 +74,7 @@ if(isset($_POST['ok'])){
                  {
                  $ajout=ajoutedocumen($documen,$spc);
                  if($ajout==1)
+                 
                  header("Location: accueil.php");
                 // header("Location:info.php?validedocument");
                 }

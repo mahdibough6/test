@@ -15,7 +15,7 @@ include_once './includes/func.inc.php';
 
 <body>
             <div  class="login-box">
-                <h1>SIGN UP</h1>
+                <h1>S'INSCRIRE</h1>
                 <form method="POST" >
 
                 <?php 
@@ -60,7 +60,7 @@ include_once './includes/func.inc.php';
                        
                     ?>
                     <input type="submit" value="Sign Up" name="ok" class="button">
-                    <p class="text-center" style="color: black;">you already have an account <a href="home.php">Sign in</a></p>
+                    <p class="text-center" style="color: black;">vous avez deja un compte ? <a href="login.php">se connecter</a></p>
                 
                 </form>
             </div> 

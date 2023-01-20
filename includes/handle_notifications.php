@@ -19,8 +19,6 @@ if(isset($_POST["submit"])){
               $file_destination = dirname(dirname(__FILE__))."\\assets\\" . $file_name_new;
               if(move_uploaded_file($file_tmp, $file_destination)){
                 createNotification($conn, $user_id,$file_name_new,$title, $sujet);
-                echo "File uploaded successfully.";
-                header("Location: ../index.php");
                 exit();
               }
         }

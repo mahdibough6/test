@@ -26,45 +26,35 @@ $pageTitle = "index";
     <div class="col d-flex flex-column justify-content-center">
     <img class="mx-auto" src="./img/doc-v1.png" alt="" srcset="">
     <a class="text-center" href='<?php echo"./boite_demandes.php";?>'>Boite des demandes</a>
-    <p class="text-center">this is an image of a document that represents the demands of inscription</p>
+    <p class="text-center">consulter les demandes des candidats</p>
 
     </div>
     <div class="col d-flex flex-column justify-content-center">
     <img class="mx-auto" src="./img/notification-v1.png" alt="" srcset="">
     <a href="notifications.php" class="text-center">cree une notification</a>
-    <p class="text-center">this is an image of a document that represents the demands of inscription</p>
+    <p class="text-center">pour la creation des notifications</p>
 
     </div><div class="col d-flex flex-column justify-content-center">
     <img class="mx-auto" src="./img/convo-v1.png" alt="" srcset="">
-    <a class="text-center">les demande d'inscription</a>
-    <p class="text-center">this is an image of a document that represents the demands of inscription</p>
+    <a class="text-center">(encours)</a>
+    <p class="text-center">xxxx xxxxxx xxxx xxxxxx xx xxxxx</p>
 
     </div>
 </div>
     <?php } elseif($_SESSION["user"]["nom_role"] == 'doctorant') { ?>
-        <h1>doctorant</h1>
-        <div class="row">
+ <h1 id="accueilSecHeader" class="mt-5 mb-5">Espace doctorant <hr> </h1>
+   <div class="row">
     <div class="col d-flex flex-column justify-content-center">
-    <figure>
     <img class="mx-auto" src="./img/doc-v1.png" alt="" srcset="">
-    <a href="./info.php" class="text-center">deposer votre demande</a>
-    <div class="text-center">this is an image of a document that represents the demands of inscription</div>
-</figure>
+    <a href="#" class="text-center">encours</a>
 
     </div>
     <div class="col d-flex flex-column justify-content-center">
-    <figure>
     <img class="mx-auto" src="./img/notification-v1.png" alt="" srcset="">
-    <figcaption class="text-center">les demande d'inscription</figcaption>
-    <div class="text-center">this is an image of a document that represents the demands of inscription</div>
-</figure>
-
+    <a href="#" class="text-center">en cours</a>
     </div><div class="col d-flex flex-column justify-content-center">
-    <figure>
     <img class="mx-auto" src="./img/convo-v1.png" alt="" srcset="">
-    <figcaption class="text-center">les demande d'inscription</figcaption>
-    <div class="text-center">this is an image of a document that represents the demands of inscription</div>
-</figure>
+    <a class="text-center">encours </a>
 
     </div>
 </div>
@@ -75,18 +65,18 @@ $pageTitle = "index";
     <div class="col d-flex flex-column justify-content-center">
     <img class="mx-auto" src="./img/doc-v1.png" alt="" srcset="">
     <a href="./info.php" class="text-center">deposer votre demande</a>
-    <p class="text-center">this is an image of a document that represents the demands of inscription</p>
+    <p class="text-center">espace pour deposer les demandes d'inscriptions</p>
 
     </div>
     <div class="col d-flex flex-column justify-content-center">
     <img class="mx-auto" src="./img/notification-v1.png" alt="" srcset="">
-    <a href="notifications.php" class="text-center">cree une notification</a>
-    <p class="text-center">this is an image of a document that represents the demands of inscription</p>
+    <a href="#" class="text-center">en cours</a>
+    <p class="text-center">xxxx xxxxx xxx xxx x xxxxx xxxxxx .</p>
 
     </div><div class="col d-flex flex-column justify-content-center">
     <img class="mx-auto" src="./img/convo-v1.png" alt="" srcset="">
-    <a class="text-center">les demande d'inscription</a>
-    <p class="text-center">this is an image of a document that represents the demands of inscription</p>
+    <a class="text-center">encours </a>
+    <p class="text-center">xxxx xxxx xxxxx xxxx x xxxxxx x.</p>
 
     </div>
 </div>

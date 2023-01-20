@@ -17,7 +17,7 @@ include_once './includes/func.inc.php';
 </head>
 <body> 
         <div class="login-box">
-            <h1>LOGIN</h1>
+            <h1>CONNEXION</h1>
                 <form method="POST" >
                     <div class="textbox ">
                         <i class="fa fa-envelope " aria-hidden="true"></i>
@@ -33,7 +33,7 @@ include_once './includes/func.inc.php';
 						if(isset($_GET['MOTEMAIL'])) echo "<span class='alert alert-danger  w-100'>".'mot de passe ou l\'email incorrect'."</span> <br><br>";
 					?>
                     <input type="submit" value="Sign In" class="button" name='ok'  style="background-color: #FF9C00;">
-                    <p class="text-center" style="color: black;">you don't have an account <a href="signup.php">sign up</a></p>
+                    <p class="text-center" style="color: black;">vous n'avez pas un compte ? <a href="signup.php">s'inscrire</a></p>
                 </form>
         </div>
             <br>
